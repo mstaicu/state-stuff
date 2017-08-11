@@ -1,0 +1,9 @@
+{
+  "files": [
+    "test/*.js"
+  ],
+  "require": [
+    "babel-register"
+  ],
+  "babel": "inherit"
+}

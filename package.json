@@ -1,0 +1,46 @@
+{
+  "name": "state-stuff",
+  "version": "0.0.0-semantically-released",
+  "description": "State stuff",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "state",
+    "magic"
+  ],
+  "devDependencies": {
+    "ava": "0.19.1",
+    "babel-cli": "6.24.1",
+    "babel-loader": "7.1.1",
+    "babel-plugin-istanbul": "4.1.4",
+    "babel-preset-es2015": "6.24.1",
+    "babel-register": "6.24.1",
+    "codecov": "2.2.0",
+    "cross-env": "5.0.1",
+    "immutable": "3.8.1",
+    "npm-run-all": "4.0.2",
+    "nyc": "11.0.3-candidate.0",
+    "rimraf": "2.6.1",
+    "semantic-release": "6.3.6",
+    "webpack": "3.0.0"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist && npm run test",
+    "build": "cross-env BABEL_ENV=production npm-run-all --parallel build:*",
+    "build:main": "babel --copy-files --out-dir dist --ignore *.test.js src",
+    "build:umd": "webpack --output-filename index.umd.js",
+    "build:umd.min": "webpack --output-filename index.umd.min.js -p",
+    "report-coverage": "cat ./coverage/lcov.info | codecov",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "test": "cross-env BABEL_ENV=test nyc ava",
+    "validate": "npm-run-all --parallel test build"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Mircea Staicu <mstaicu@gmail.com>",
+  "license": "MIT"
+}
